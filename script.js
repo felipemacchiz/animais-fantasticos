@@ -1,18 +1,19 @@
-const img = document.querySelectorAll('img');
-console.log(img);
+const tabMenu = document.querySelectorAll('.js-tabmenu li');
+const tabContent = document.querySelectorAll('.js-tabcontent section');
 
-const imagensAnimais = document.querySelectorAll('img[src^="img/imagem"]');
-console.log(imagensAnimais);
+if(tabMenu.length && tabContent.length) {
+  tabContent[0].classList.add('ativo');
 
-const linksInterno = document.querySelectorAll('[href^="#"]');
-console.log(linksInterno);
+  function activeTab(index) {
+    tabContent.forEach((section) => {
+      section.classList.remove('ativo');
+    });
+    tabContent[index].classList.add('ativo');
+  }
 
-const animais = document.querySelector('.animais-descricao');
-const h2Animais = animais.querySelector('h2');
-
-console.log(animais);
-console.log(h2Animais);
-
-const paragrafos = document.querySelectorAll('p');
-
-console.log(paragrafos[--paragrafos.length]);
+  tabMenu.forEach((itemMenu, index) => {
+    itemMenu.addEventListener('click', () => {
+      activeTab(index);
+    });
+  });
+}
